@@ -3,6 +3,8 @@
  *  Sends and receives message from the server in every 2 seconds
  *  Communicates: wifi_server_01.ino
  *  this is just some text to show that i have made some changes
+ *  more text to see if this branch is deferant to the master
+ *  and much************much ********** more
  */ 
 #include <SPI.h>
 #include <ESP8266WiFi.h>

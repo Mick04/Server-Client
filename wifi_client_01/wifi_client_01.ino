@@ -2,7 +2,6 @@
  *  Asks some network parameters
  *  Sends and receives message from the server in every 2 seconds
  *  Communicates: wifi_server_01.ino
- *  this is just some text to show that i have made some changes
  */ 
 #include <SPI.h>
 #include <ESP8266WiFi.h>

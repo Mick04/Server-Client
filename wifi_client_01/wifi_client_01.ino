@@ -74,7 +74,7 @@ void loop () {
   Serial.println("from server: " + answer);
   client.flush();
   /**************************************
-   *               togle LED            *
+   *               togle internal LED            *
    **************************************/
    if(digitalRead(ledPin))
        digitalWrite(ledPin, 0);

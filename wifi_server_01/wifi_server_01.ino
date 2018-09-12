@@ -42,7 +42,7 @@ void loop () {
   if (client) {
     if (client.connected()) {
    /**************************************
-   *               togle LED            *
+   *               togle internal LED            *
    **************************************/  
       if(digitalRead(ledPin))
        digitalWrite(ledPin, 0);
@@ -56,7 +56,6 @@ void loop () {
       client.flush();
       client.println("Hi client! No, I am listening.\r"); // sends the answer to the client
       //digitalWrite(ledPin, HIGH);
-      Serial.println("Line 50");
     }
     client.stop();                // tarminates the connection with the client
   }

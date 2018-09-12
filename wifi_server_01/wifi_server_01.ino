@@ -41,13 +41,21 @@ void loop () {
   WiFiClient client = server.available();
   if (client) {
     if (client.connected()) {
-      digitalWrite(ledPin, LOW);  // to show the communication only (inverted logic)
+   /**************************************
+   *               togle LED            *
+   **************************************/  
+      if(digitalRead(ledPin))
+       digitalWrite(ledPin, 0);
+    else
+      digitalWrite(ledPin, 1);
+      
+      //digitalWrite(ledPin, LOW);  // to show the communication only (inverted logic)
       Serial.println(".");
       String request = client.readStringUntil('\r');    // receives the message from the client
-      Serial.print("From client: "); Serial.println(request);
+      Serial.print("From client: " + request); //Serial.println(request);
       client.flush();
       client.println("Hi client! No, I am listening.\r"); // sends the answer to the client
-      digitalWrite(ledPin, HIGH);
+      //digitalWrite(ledPin, HIGH);
       Serial.println("Line 50");
     }
     client.stop();                // tarminates the connection with the client

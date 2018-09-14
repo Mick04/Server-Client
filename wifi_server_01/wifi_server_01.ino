@@ -6,7 +6,7 @@
  */
 #include <SPI.h>
 #include <ESP8266WiFi.h>
-
+byte ExternalLedPin = D5;
 byte ledPin = 2;
 char ssid[] = "Gimp";               // SSID of your home WiFi
 char pass[] = "FC7KUNPX";               // password of your home WiFi
@@ -33,30 +33,44 @@ void setup() {
   Serial.print("SSID: "); Serial.println(WiFi.SSID());
   Serial.print("Signal: "); Serial.println(WiFi.RSSI());
   Serial.print("Networks: "); Serial.println(WiFi.scanNetworks());
+  pinMode(ExternalLedPin, OUTPUT);
   pinMode(ledPin, OUTPUT);
 }
 
 void loop () {
-
   WiFiClient client = server.available();
   if (client) {
     if (client.connected()) {
+
    /**************************************
    *               togle internal LED            *
-   **************************************/  
-      if(digitalRead(ledPin))
-       digitalWrite(ledPin, 0);
-    else
-      digitalWrite(ledPin, 1);
-      
-      //digitalWrite(ledPin, LOW);  // to show the communication only (inverted logic)
+   **************************************/
+    
+   
       Serial.println(".");
       String request = client.readStringUntil('\r');    // receives the message from the client
       Serial.print("From client: " + request); //Serial.println(request);
       client.flush();
       client.println("Hi client! No, I am listening.\r"); // sends the answer to the client
+     //If (request == ){}
       //digitalWrite(ledPin, HIGH);
+       //digitalWrite(ledPin, LOW);  // to show the communication only (inverted logic)
+       if(digitalRead(ledPin))
+       digitalWrite(ledPin, 0);
+    else
+       digitalWrite(ledPin, 1);
+     
+      if(request == "LED OFF "){
+        digitalWrite(ExternalLedPin, 0);
+        
+       // Serial.print("line 51 ");
+      }
+      else if ("LED ON "){
+        digitalWrite(ExternalLedPin, 1);
+        
+      }
+      client.stop();                // tarminates the connection with the client
     }
-    client.stop();                // tarminates the connection with the client
   }
 }
+

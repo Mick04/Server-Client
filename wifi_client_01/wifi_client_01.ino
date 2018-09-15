@@ -8,6 +8,9 @@
  */ 
 #include <SPI.h>
 #include <ESP8266WiFi.h>
+#include <OneWire.h>
+
+OneWire  ds(D7);//active board  // on pin 10 (a 4.7K resistor is necessary)
 
 byte ledPin = 2;
 
